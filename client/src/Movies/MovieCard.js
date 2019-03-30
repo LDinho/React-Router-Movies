@@ -1,6 +1,7 @@
 import React from 'react';
 
-const MovieCard = ({movie: {title, director, metascore, stars}}) => {
+const MovieCard = ({movie, addToSavedList}) => {
+  const {title, director, metascore, stars} = movie;
 
   return (
     <div className="save-wrapper">
@@ -20,9 +21,21 @@ const MovieCard = ({movie: {title, director, metascore, stars}}) => {
           </div>
         ))}
       </div>
-      <div className="save-button">Save</div>
+      <div className="save-button"
+           onClick={(e) => {
+             e.preventDefault(); // prevents the routing <Link> to the individual movie when saving
+             addToSavedList(movie);
+           }}
+      >
+        Save
+      </div>
     </div>
   );
 };
 
 export default MovieCard;
+
+// To prevent app to completely break
+MovieCard.defaultProps = {
+  addToSavedList: () => {}
+}
