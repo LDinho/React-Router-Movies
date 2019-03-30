@@ -16,8 +16,15 @@ export default class App extends Component {
   addToSavedList = movie => {
     console.log("movie:", movie);
     const savedList = this.state.savedList;
-    savedList.push(movie);
-    this.setState({ savedList });
+
+    const isMovieDuplicate = Boolean(savedList.find((savedMovie) => {
+      return savedMovie.id === movie.id;
+    }));
+
+    if (!isMovieDuplicate) {
+      savedList.push(movie);
+      this.setState({ savedList });
+    }
   };
 
   render() {
