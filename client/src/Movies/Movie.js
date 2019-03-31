@@ -28,28 +28,37 @@ export default class Movie extends Component {
       });
   };
   // Uncomment this code when you're ready for the stretch problems
+  // * DEPRECATED *
+  // componentWillReceiveProps(newProps){
+  //   if(this.props.match.params.id !== newProps.match.params.id){
+  //     this.fetchMovie(newProps.match.params.id);
+  //   }
+  // } // * Deprecated *
 
-  componentWillReceiveProps(newProps){
-    if(this.props.match.params.id !== newProps.match.params.id){
-      this.fetchMovie(newProps.match.params.id);
+  componentDidUpdate (prevProps) {
+    console.log('PREVPROPS:', prevProps.match.params);
+    console.log('THIS.PROPS:', this.props.match.params);
+
+    if(this.props.match.params.id !== prevProps.match.params.id){
+      this.fetchMovie(this.props.match.params.id);
     }
   }
-  //
-  // saveMovie = () => {
-  //   const addToSavedList = this.props.addToSavedList;
-  //   addToSavedList(this.state.movie)
-  // }
+
+  saveMovie = () => {
+    const {addToSavedList} = this.props;
+    console.log()
+    addToSavedList(this.state.movie)
+  }
 
   render() {
+    console.log("RENDER:::::",this.state.movie);
     if (!this.state.movie) {
       return <div>Loading movie information...</div>;
     }
 
-    const {addToSavedList} = this.props;
-
     return (
       <MovieCard movie={this.state.movie}
-                 addToSavedList={addToSavedList}
+                 addToSavedList={this.saveMovie}
       />
     )
   }

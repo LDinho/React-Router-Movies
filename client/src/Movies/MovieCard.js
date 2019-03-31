@@ -24,7 +24,7 @@ const MovieCard = ({movie, addToSavedList}) => {
       <div className="save-button"
            onClick={(e) => {
              e.preventDefault(); // prevents the routing <Link> to the individual movie when saving
-             addToSavedList(movie);
+             addToSavedList();
            }}
       >
         Save
