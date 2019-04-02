@@ -31,13 +31,21 @@ body {
   position: relative;
   margin: 1rem auto;
   width: 75%;
+
+}
+
+.saved-list h3 {
+  margin-right: 10px;
+}
+
+.saved-list-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.saved-list h3 {
-  margin-right: 10px;
+.clear-button {
+  text-align: right;
 }
 
 .saved-movie {
